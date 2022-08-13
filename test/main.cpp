@@ -25,6 +25,10 @@ bool ListInsert(SqlList &L, int i, int e){
     return true;
 }
 
+bool ListDelete(SqlList &L, int i, int e){
+    return true;
+}
+
 int main(){
     SqlList L;
     L.length = 0;
