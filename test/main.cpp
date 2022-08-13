@@ -38,6 +38,22 @@ bool ListDelete(SqlList &L, int i, int &e){
     L.length--;
     return true;
 }
+int LocateElem(SqlList L, int e){
+    int i;
+    for (i=0;i<L.length;i++){
+        if (L.data[i] == e){
+            return i+1;
+        }
+    }
+    return 0;  //没找到，返回0
+}
+
+void printList(SqlList L){
+    for (int j=0;j<L.length;j++){
+        cout<<L.data[j]<<' ';
+    }
+    cout<<endl;
+}
 
 int main(){
     SqlList L;
@@ -45,14 +61,13 @@ int main(){
     int i = 1;
     int e[5] = {1, 2, 3, 4, 5};
     int x;
-    for (;i<5;i++){
+    for (;i<=5;i++){
         ListInsert(L, i, e[i-1]);
     }
-    
-    cout<<L.length<<endl<<L.data[0]<<endl<<L.data[1]<<endl;
+    printList(L);
     ListDelete(L, 2, x);
-    cout<<endl;
-    cout<<L.length<<endl<<L.data[1]<<endl;
+    printList(L);
+    cout<<LocateElem(L, 5)<<endl;
     
     return 0;
 }
