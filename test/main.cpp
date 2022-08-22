@@ -3,6 +3,8 @@
 using namespace std;
 
 #include "lineform.h" //线性表
+#include "SingleChainList.h" //单链表
+#include "DoubleChainList.h"
 
 void LineFormTest(){
     LineForm L;
@@ -19,12 +21,31 @@ void LineFormTest(){
     cout<<LocateElem(L, 5)<<endl;
 }
 
+void SingleChainListTest(){
+    LNode *L;
+    int e = 3;
+    List_HeadInsert(L);
+    printSingleChainList(L);
+    List_TailInsert(L);
+    printSingleChainList(L);
+    int p = LocateElem(L, e);
+    cout<<p<<endl;
+}
+
+void DoubleChainListTest(){
+    DNode *L = nullptr;
+    L = InsertNode(L);
+    printDoubleChainList(L);
+}
 
 int main(){
 /*
  测试
  */
-    LineFormTest();
+//    LineFormTest();
+//    SingleChainListTest();
+    DoubleChainListTest();
+    
     
     return 0;
 }
