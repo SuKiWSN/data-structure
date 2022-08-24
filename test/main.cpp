@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include <stdio.h>
 using namespace std;
 
@@ -38,14 +39,67 @@ void DoubleChainListTest(){
     printDoubleChainList(L);
 }
 
+typedef struct BiTNode{
+    int data;
+    struct BiTNode *lchild, *rchild;
+}BiTNode, *BiTree;
+
+void visit(BiTree T){
+    cout<<T->data<<" ";
+}
+
+void PreOrder(BiTree T){
+    visit(T);
+    if(T->lchild)PreOrder(T->lchild);
+    if(T->rchild)PreOrder(T->rchild);
+}
+
+void InOrder(BiTree T){
+    if(T->lchild)InOrder(T->lchild);
+    visit(T);
+    if(T->rchild)InOrder(T->rchild);
+}
+
+void PostOrder(BiTree T){
+    if(T->lchild)PostOrder(T->lchild);
+    if(T->rchild)PostOrder(T->rchild);
+    visit(T);
+}
+
 int main(){
 /*
  测试
  */
 //    LineFormTest();
 //    SingleChainListTest();
-    DoubleChainListTest();
+//    DoubleChainListTest();
     
+    BiTree T = (BiTree)malloc(sizeof(struct BiTNode));
+    T->data = 1;
+    T->lchild = (BiTree)malloc(sizeof(struct BiTNode));
+    T->rchild = (BiTree)malloc(sizeof(struct BiTNode));
+    T->lchild->data = 2;
+    T->lchild->lchild = NULL;
+    T->lchild->rchild = (BiTree)malloc(sizeof(struct BiTNode));
+    T->lchild->rchild->data = 4;
+    T->lchild->rchild->rchild = NULL;
+    T->lchild->rchild->lchild = (BiTree)malloc(sizeof(struct BiTNode));
+    T->lchild->rchild->lchild->data = 6;
+    T->lchild->rchild->lchild->lchild = NULL;
+    T->lchild->rchild->lchild->rchild = NULL;
+    T->rchild->data = 3;
+    T->rchild->lchild = NULL;
+    T->rchild->rchild = (BiTree)malloc(sizeof(struct BiTNode));
+    T->rchild->rchild->data = 5;
+    T->rchild->rchild->rchild = NULL;
+    T->rchild->rchild->lchild = NULL;
+    
+    PreOrder(T);
+    cout<<endl;
+    InOrder(T);
+    cout<<endl;
+    PostOrder(T);
+    cout<<endl;
     
     return 0;
 }
